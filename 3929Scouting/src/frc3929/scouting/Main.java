@@ -1,13 +1,24 @@
 package frc3929.scouting;
 
 import javax.swing.JOptionPane;
+import java.util.*;
 
 public class Main {
 	static Team tm;
-	
+	public ArrayList<Team> teams = new ArrayList<Team>();
 
 	public static void main(String[] args) {
+		String zeroChoice = {"Start"};
+		int zeroInput = JOptionPane.showOptionDialog(null, "Hello" ,JOptionPane.YES_NO_OPTION,
+				JOptionPane.PLAIN_MESSAGE, null,zeroChoice, null);
+		switch (zeroInput) {
+		case 0:
+			intro();
+			break;
+		}
+	}
 		
+	public static void intro(){
 		String[] firstChoice = { "Add Team", "Select Team" };
 		int firstInput = JOptionPane.showOptionDialog(null,
 				"Select an old team or add a new one", "3929 Scouting App",
@@ -25,19 +36,32 @@ public class Main {
 		}
 
 	}
+	
 
 	public static void teamList() {
-		
+		String[] thirdChoice = {"Back","Select"};
+		int thirdInput = JOptionPane.showOptionDialog(null,
+				"Return to the intro", "Continue on Son",
+				JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+				thirdChoice, null);
+		switch (thirdInput) {
+		case 0:
+			intro();
+			break;
+		case 1:
+			
+			
+		}
 	}
 
 	public static void newTeam() {
 		String teamString = JOptionPane
 				.showInputDialog("Please input team number");
 		tm = new Team(Integer.parseInt(teamString));
-
+		teams.add(tm);
 		matchInput();
 	}
-
+	//Filewriter etc. Saving system.
 	public static void matchChoice(){
 		String[] secondChoice = {"Back", "Old Matches", "New Match"};
 		int secondInput = JOptionPane.showOptionDialog(null, "Look at old matches or enter data for a new match.", "3929 Scouting App", 
@@ -122,7 +146,8 @@ public class Main {
 				+ "Total disc points: " + mtc.discPointsTotal() + "\n"
 				+ "Total discs: " + mtc.discTotal() + "\n"
 				+ "Total Auton Points: " + mtc.autonTotal()
-				+ "\n" + "Total Climbing Points: "+ mtc.climbingPoints());
+				+ "\n" + "Total Climbing Points: "+ mtc.climbingPoints()
+				+ "\n" + "Expected Points: " + tm.expectedPoints());
 
 	}
 
