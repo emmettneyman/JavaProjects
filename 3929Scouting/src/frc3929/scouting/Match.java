@@ -25,17 +25,21 @@ public class Match {
 	}
 	
 	public int total(){
-		return (threeAuton*6)+(twoAuton*4)+(oneAuton*2)+(threePoint*3)+(twoPoint*2)+onePoint+(pyramidGoal*5)+(firstLevel*10)+(secondLevel*20)+(thirdLevel*30);
+		return (threeAuton*6)+(twoAuton*4)+(oneAuton*2)
+				+(threePoint*3)+(twoPoint*2)+onePoint+(pyramidGoal*5)
+				+(firstLevel*10)+(secondLevel*20)+(thirdLevel*30);
 	}
 	
 	public int discPointsTotal(){
-		return (threeAuton*6)+(twoAuton*4)+(oneAuton*2)+(threePoint*3)+(twoPoint*2)+onePoint+(pyramidGoal*5);
+		return (threeAuton*6)+(twoAuton*4)+(oneAuton*2)
+				+(threePoint*3)+(twoPoint*2)+onePoint+(pyramidGoal*5);
 	}
 	public int discAttemptsTotal(){
 		return thirdAttempt+secondAttempt+firstAttempt+pyramidAttempt+autonAttempt;
 	}
 	public int discTotal(){
-		return (threeAuton)+(twoAuton)+(oneAuton)+(threePoint)+(twoPoint)+onePoint+(pyramidGoal);
+		return (threeAuton)+(twoAuton)+(oneAuton)
+				+(threePoint)+(twoPoint)+onePoint+(pyramidGoal);
 	}
 	public int autonTotal(){
 		return (threeAuton*6)+(twoAuton*4)+(oneAuton*2);
@@ -84,20 +88,36 @@ public class Match {
 		thirdLevel++;
 	}
 
-	public void thirdAttempt() {
+	public void thirdAttempt() { //Missed not Attempted
 		thirdAttempt++;
 	}
 	public void secondAttempt() {
 		secondAttempt++;
 	}
 	public void firstAttempt() {
-
 		firstAttempt++;
 	}
 	public void pyramidAttempt(){
 		pyramidAttempt++;
 	}
+	public int getOneAttempt(){
+		return firstAttempt;
+	}
 	
+	public int getTwoAttempt(){
+		return secondAttempt;
+	}
+	
+	public int getThreeAttempt(){
+		return thirdAttempt;
+	}
+	public int getTotalAttempts(){
+		return getThreeAttempt() + getTwoAttempt() + getOneAttempt();
+	}
+	public int getTotalShots()
+	{
+		return getTotalAttempts() + getOnePoint() + getTwoPoint() + getThreePoint();
+	}
 	public void autonAttempt(){
 		autonAttempt++;
 	}
@@ -164,5 +184,7 @@ public class Match {
 
 	public int getThirdLevel() {
 		return thirdLevel;
+	}
+	
 	}
 }
