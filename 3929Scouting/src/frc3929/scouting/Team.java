@@ -3,6 +3,8 @@ package frc3929.scouting;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+
 public class Team {
 	private int teamNum;
 	List<Match> matches;
@@ -52,6 +54,56 @@ public class Team {
 
 	public int getTeamNum() {
 		return teamNum;
+	}
+	private int getTotalOne(){
+		int f = 0;
+		for(int i = 0; i < Math.round(matches.size() * 4/9); i++)
+		{
+			f += matches.get(matches.size() - i).getOnePoint();
+		}
+		return f;
+	}
+	private int getTotalTwo(){
+		int t = 0;
+		for(int i = 0; i < Math.round(matches.size() * 4/9); i++)
+		{
+			t += matches.get(matches.size() - i).getTwoPoint();
+		}
+		return t * 2;
+	}
+	private int getNeededThree(){
+		int t = 0;
+		for(int i = 0; i < Math.round(matches.size() * 4/9); i++)
+		{
+			t += matches.get(matches.size() - i).getThreePoint();
+		}
+		return t * 3;
+	}
+	private int getTotalShots(){
+		int shots = 0;
+		for(int i = 0; i < Math.round(matches.size() * 4/9); i++)
+		{
+			shots += matches.get(matches.size() - i).getTotalShots();
+		}
+		return shots;
+	}
+	private double expectedValuePerShot(){
+		return (getTotalOne() + getTotalTwo() + getTotalThree()) / getTotalShots();
+	}
+	
+	private int expectedShotsMade(){
+		int shots = 0;
+		for(int i = 0; i < Math.round(matches.size() * 4/9); i++)
+		{
+			shots += matches.get(matches.size() - i).getTotalShots();
+		}
+		return Math.round(shots * 4/9);
+	}
+	
+	public int expectedPoints(){
+		
+		return expectedValuePerShot() + expectedShotsMade();
+		
 	}
 	
 }
